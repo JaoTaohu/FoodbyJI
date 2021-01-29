@@ -1,5 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 import 'sure.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,23 +13,50 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _n = 0;
+  void add() {
+    setState(() {
+      _n++;
+    });
+  }
+
+  void minus() {
+    setState(() {
+      if (_n != 0) _n--;
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+        const Locale('th', 'TH'), // Thai
+      ],
       home: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: Text(
               'Book a Table',
-              style: TextStyle(fontSize: 25,color: Colors.blue[800]),
+              style: TextStyle(fontSize: 25, color: Colors.blue[800]),
             ),
             centerTitle: true,
             actions: [
-              IconButton(icon: Icon(Icons.notifications,color: Colors.blue[800],), onPressed: () {})
+              IconButton(
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Colors.blue[800],
+                  ),
+                  onPressed: () {})
             ],
           ),
-          
           body: Stack(
             children: <Widget>[
               Padding(
@@ -76,15 +107,26 @@ class _HomeState extends State<Home> {
                             ],
                           ),
                         ),
-                        Row(
-                          children: <Widget>[
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(100, 20, 0, 0),
-                                child: Text(
-                                  '4 persons',
-                                  style: TextStyle(color: Colors.blue[800]),
-                                )),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                          child: Row(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: add,
+                                icon: Icon(Icons.add,
+                                    color: Colors.blue[800], size: 20),
+                              ),
+                              Text(
+                                '$_n persons',
+                                style: TextStyle(color: Colors.blue[800]),
+                              ),
+                              IconButton(
+                                onPressed: minus,
+                                icon: Icon(Icons.remove,
+                                    color: Colors.blue[800], size: 20),
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -193,8 +235,12 @@ class _HomeState extends State<Home> {
               ),
               GestureDetector(
                 onTap: () {
-                   Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => Sure()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Sure(
+                                kon: _n,
+                              )));
                 },
                 child: Center(
                   child: Column(

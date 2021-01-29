@@ -18,9 +18,7 @@ class _FinishState extends State<Finish> {
             style: TextStyle(fontSize: 25,color: Colors.blue[800]),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(icon: Icon(Icons.notifications,color: Colors.blue[800],), onPressed: () {})
-          ],
+         
         ),
         body: Center(
             child: Container(

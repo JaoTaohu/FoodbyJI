@@ -3,11 +3,16 @@ import 'package:flutter_application_kru_tong/finish%20paid.dart';
 import 'package:flutter_application_kru_tong/home.dart';
 
 class Sure extends StatefulWidget {
+  final kon;
+  Sure({this.kon});
+
   @override
   _SureState createState() => _SureState();
 }
 
 class _SureState extends State<Sure> {
+  int _n = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,12 +21,9 @@ class _SureState extends State<Sure> {
           backgroundColor: Colors.white,
           title: Text(
             'Book a Table',
-            style: TextStyle(fontSize: 25,color: Colors.blue[800]),
+            style: TextStyle(fontSize: 25, color: Colors.blue[800]),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(icon: Icon(Icons.notifications,color: Colors.blue[800],), onPressed: () {})
-          ],
         ),
         body: Center(
             child: Container(
@@ -47,7 +49,7 @@ class _SureState extends State<Sure> {
                       ),
                       child: Center(
                         child: Text(
-                          "4 Persons",
+                          "${widget.kon.toString()} Persons",
                           style: TextStyle(color: Colors.white, fontSize: 30),
                         ),
                       ),
