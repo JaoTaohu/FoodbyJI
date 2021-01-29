@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'sure.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -25,8 +23,6 @@ class _HomeState extends State<Home> {
       if (_n != 0) _n--;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
